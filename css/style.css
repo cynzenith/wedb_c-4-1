@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     color: #333333;
+    box-sizing: border-box;
 }
 a {
     color: #333333;
@@ -29,66 +30,328 @@ img {
 #aside .logo {
     width: 100%;
     height: 100px;   
-    background-color: #b3b2b2;
+    /* background-color: #b3b2b2; */
 }
+
+#aside .logo img{
+    width: 90%; /* 이미지가 부모 요소의 너비를 초과하지 않도록 설정 */
+    height: auto; /* 비율을 유지하며 높이 자동 조정 */
+    display: block; /* 이미지 주위의 불필요한 여백 제거 */
+    margin-left: 10px;
+}
+
 
 #aside .nav {
     width: 100%;
     height: 550px;   
-    background-color: #c2c2c2;
+    /* background-color: #c2c2c2; */
 }
+
+/* #aside .nav > ul {} */
+#aside .nav > ul > li {
+    /* text-align: center; -> a태그에 적용*/
+    position: relative;
+}
+
+/* 1 */
+#aside .nav > ul > li > a {
+    display: inline-block;
+    /* w + p = box-sizing */
+    padding: 10px; /*40px 필요없어. width = 100% 있으니까*/
+    width: 100%;
+
+    /* - */
+    text-align: center; 
+}
+
+/* 2 */
+#aside .nav > ul > li:hover > a{
+    background-color: #9430e7;
+    color: #fff;
+}               
+#aside .nav > ul > li:focus > a{
+    background-color: #9430e7`;
+    color: #fff;
+}
+
+#aside .nav > ul > li > ul {
+    display: none;
+    position: absolute;
+    left: 200px;
+    top: 0;
+
+    background-color: #fff;
+    z-index: 1000;
+}
+
+/* #aside .nav > ul > li > ul > li {} */
+#aside .nav > ul > li > ul > li a {
+    padding: 10px;
+    display: inline-block;          
+    width: 200px;                    /* 200px를 기준으로하는 거 맞다!*/
+}
+#aside .nav > ul > li > ul > li a:hover {
+    background-color: #9430e7;
+    color: #fff;
+}
+#aside .nav > ul > li > ul > li a:focus {
+    background-color: #9430e7;
+    color: #fff;
+}
+
 
 
 /* main */
 #main {
     width: 80%;
+    position: relative;
 }
+
+
+
 
 /* slider */
 #slider {
     width: 100%;
     height: 350px;   
-    background-color: #d9c8c8;
+    /* background-color: #d9c8c8; */
+    overflow: hidden;
+}
+
+#slider .sliderWrap {
+    display: flex;
+    width: 300%;
+}
+
+#slider .sliderWrap .slider {
+    /* 여기에 주는 게 맞다 */
+    position: relative;
+    width: 100%;
+}
+
+/* .slider.s1 {
+    width: 100%;
+    height: 350px;
+    background-image: url('/images/s1.png');
+    /* background-repeat: no-repeat; */
+    background-position: center;
+    background-size: cover;
+/* } */
+/* .slider.s2 {
+    width: 100%;
+    height: 350px;
+
+    background-image: url('/images/s2.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} */ 
+/* .slider.s {
+    width: 100%;
+    height: 350px;
+
+    background-image: url('/images/s3.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} */
+
+
+.slider div {
+    position: absolute;
+    left: 50%;top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    padding: 20px 50px;
+    width: 600px;
+    height: 150px;
+}
+.slider div h2 {
+    margin-top: 10px; /*세로정렬은 margin-top 해결*/
+    color: #fff;
+    font-size: 40px;
+    text-align: right;
+}
+.slider div em {
+    color: #6519cf;
+}
+.slider div p {
+    color: #fff;
+    font-size: 20px;
+    text-align: right;
 }
 
 /* contents */
 #contents {
     width: 100%;
     display: flex;
+    box-sizing: border-box;
+    
 }
 #contents .info {
     width: 33.3333%;
     height: 200px;   
-    background-color: #e6d3d3;
+    /* background-color: #e6d3d3; */
+    padding: 10px;
 }
+#contents .info h2 {
+    width: 100%;
+    margin-bottom: 10px;
+    /* border: 1px solid #000; */
+}
+#contents .info ul {
+    width: 100%;
+    /* border: 1px solid #000; */
+
+}
+#contents .info ul li {
+    display: flex;
+    width: 100%;
+    line-height: 2;
+    font-size: 15px;
+    /* border: 1px solid #000; */
+}
+
+#contents .info ul li a{
+    width: 80%;
+    display: inline-block;
+    /* border: 1px solid #000; */
+
+    overflow : hidden;
+    text-overflow: ellipsis;
+    white-space : nowrap;
+}
+
+#contents .info ul li a:hover {
+    text-decoration: underline;
+}
+
+#contents .info ul li span{
+    width: 20%;
+    text-align: right;
+    display: inline-block;
+    font-size: 13px;
+
+}
+
+.popup-cont {
+    width: 300px;
+    height: 200px;
+    border: 3px solid rgb(74, 24, 135);
+
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #fff;
+    display: none;
+
+}
+.popup-cont h2 {
+    margin: 15px 0;
+    text-align: center;
+}
+.popup-cont p {
+    padding: 10px;
+    line-height: 1.5;
+}
+.popup-close {
+    display: inline-block;
+    background-color: rgb(106, 87, 129);
+    padding: 8px 13px;
+    margin-top: 10px;
+    margin-left: 110px;
+    color: #fff;
+}
+
 #contents .gal {
     width: 33.3333%;
     height: 200px;   
-    background-color: #cdbcbc;
+    /* background-color: #cdbcbc; */
+    padding: 10px;
 }
-#contents .banner {
-    width: 33.3333%;
+#contents .gal h2{
+    margin-bottom: 15px;
+}
+#contents .gal ul {
+    display: flex;
+    justify-content: space-between;
+    
+}
+#contents .gal li a img {
+    width: 80px;
+    height: 110px;
+}
+#contents .gal li a img:hover {
+    opacity: 0.7;
+}
+
+
+#contents .link {
+    width: 33.333%;
     height: 200px;   
-    background-color: #b6a6a6;
+    /* background-color: #b6a6a6; */
+    padding: 10px;
+    background-image: url('/images/g3.jpg');
+    background-position: center center;
+    background-size: 240px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
+#contents .link h2 {
+    margin-bottom: 5px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    
+}
+#contents .link a {
+    background-color: #3e18a4;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 40px;
+}
+
 
 /* footer */
 #footer {
     width: 100%;
     display: flex;
+    align-items: center;
+    height: 100px;
+}
+#footer .footer1 img {
+    max-width: 100%; /* 이미지가 부모 요소의 너비를 초과하지 않도록 설정 */
+    height: auto; /* 비율을 유지하며 높이 자동 조정 */
+    display: block; /* 이미지 주위의 불필요한 여백 제거 */
 }
 #footer .footer1 {
     width: 20%;
-    height: 100px;   
-    background-color: #c4b2b2;
+    /* background-color: #c4b2b2; */
+    padding: 10px;
 }
 #footer .footer2 {
     width: 60%;
-    height: 100px;   
-    background-color: #d3c0c0;
+    /* background-color: #d3c0c0; */
+    font-size: 8px;
 }
 #footer .footer3 {
     width: 20%;
-    height: 100px;   
-    background-color: #a79696;
+    /* background-color: #a79696; */
+}
+
+#footer .footer3 select {
+    width: 90%;
+    height: 30px;
 }
